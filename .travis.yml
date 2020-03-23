@@ -1,0 +1,8 @@
+languge: go
+go:
+  - 1.13.x
+
+deploy:
+  provider: heroku
+  api-key: $HEROKU_KEY
+  app: fs-kinopoisk
