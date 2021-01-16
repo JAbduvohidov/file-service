@@ -4,6 +4,7 @@ import (
 	"file-service/cmd/file-service/app"
 	"file-service/pkg/services/files"
 	"flag"
+	"github.com/JAbduvohidov/jwt"
 	"log"
 	"net"
 	"net/http"
@@ -13,12 +14,14 @@ import (
 var (
 	hostF        = flag.String("host", "", "Server host")
 	portF        = flag.String("port", "", "Server port")
+	secretF      = flag.String("secret", "", "Secret key")
 	storagePathF = flag.String("filepath", "files", "Files store directory")
 )
 
 const (
 	envHost        = "HOST"
 	envPort        = "PORT"
+	envSecret      = "SECRET"
 	envStoragePath = "STORAGE_PATH"
 )
 
@@ -43,20 +46,26 @@ func main() {
 	if !ok {
 		log.Panic("can't get storage path")
 	}
+	secret, ok := fLagOrEnv(secretF, envSecret)
+	if !ok {
+		log.Panic("can't get storage path")
+	}
 	addr := net.JoinHostPort(host, port)
-	start(addr, storagePath)
+	start(addr, storagePath, jwt.Secret(secret))
 }
 
-func start(addr string, path string) {
+func start(addr string, path string, secret jwt.Secret) {
 	createStorageFolder(path)
+
 	mux := http.NewServeMux()
 	fileSvc := files.NewFileService(path)
 	server := app.NewServer(
 		mux,
+		&secret,
 		fileSvc,
 		path,
 	)
-	server.InitRoutes()
+	server.Start()
 	panic(http.ListenAndServe(addr, server))
 }
 

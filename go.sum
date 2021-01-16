@@ -1,6 +1,7 @@
+github.com/JAbduvohidov/di v0.0.0-20200314092359-5c95b4ada9f8 h1:Q3W1iUUcoPX7KRB6z0LYAJXvjcb/BmYVX4SrHbPXTH4=
+github.com/JAbduvohidov/di v0.0.0-20200314092359-5c95b4ada9f8/go.mod h1:1LTR2Lu990Wg5B0fUC/8OZwSAZCS5I3NGYlZnCBZez8=
+github.com/JAbduvohidov/jwt v0.0.0-20200314105802-4a51e9a9d133 h1:XYs7Tgb+aLRlsAyC/3rvuyDvH3741mA0tAEhCYuo9jE=
 github.com/JAbduvohidov/jwt v0.0.0-20200314105802-4a51e9a9d133/go.mod h1:KsjmwgWjklgAUSvrOkjdldqkbCNs736uGaTAkwy8GgU=
-github.com/JAbduvohidov/mux v0.0.0-20200315114007-51e21348a81e h1:FNY+CJBsYrFstf34HMW8fvKeT1ckMdUGxu1OCYpRg1g=
-github.com/JAbduvohidov/mux v0.0.0-20200315114007-51e21348a81e/go.mod h1:guS+CwLIN4tYlj4fDUWI16VonAAGWOctWbTt794Inlo=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/uuid v1.1.1 h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY=

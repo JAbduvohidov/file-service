@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 )
 
-const multipartMaxBytes = 15 * 1024 * 1024
+const multipartMaxBytes = 100 * 1024 * 1024
 
-func (s *server) handleMultipartUpload(responseWriter http.ResponseWriter, request *http.Request) {
+func (s *Server) handleMultipartUpload(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.Method != "POST" {
 		return
 	}
@@ -32,7 +32,7 @@ func (s *server) handleMultipartUpload(responseWriter http.ResponseWriter, reque
 	for _, fileHeader := range fileHeaders {
 		name, err := s.saveFile(fileHeader)
 		if err != nil {
-			http.Error(responseWriter, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			http.Error(responseWriter, http.StatusText(http.StatusAccepted), http.StatusAccepted)
 			log.Print(err)
 			return
 		}
@@ -59,7 +59,7 @@ func (s *server) handleMultipartUpload(responseWriter http.ResponseWriter, reque
 	return
 }
 
-func (s *server) saveFile(fileHeader *multipart.FileHeader) (name string, err error) {
+func (s *Server) saveFile(fileHeader *multipart.FileHeader) (name string, err error) {
 	file, err := fileHeader.Open()
 	if err != nil {
 		return

@@ -1,5 +1,6 @@
 POST localhost:8001/files
 Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer <YOUR_TOKEN>
 
 --WebAppBoundary
 Content-Disposition: form-data; name="file"; filename="mulan"

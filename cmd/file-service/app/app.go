@@ -3,20 +3,26 @@ package app
 import (
 	"errors"
 	"file-service/pkg/services/files"
+	"github.com/JAbduvohidov/jwt"
 	"net/http"
 )
 
-type server struct {
-	router        http.Handler
-	fileSvc       *files.FileService
-	storagePath   string
+type Server struct {
+	router      http.Handler
+	fileSvc     *files.FileService
+	secret      *jwt.Secret
+	storagePath string
 }
 
-func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	s.router.ServeHTTP(w, r)
 }
 
-func NewServer(router http.Handler, fileSvc *files.FileService, storagePath string) *server {
+func (s *Server) Start() {
+	s.InitRoutes()
+}
+
+func NewServer(router http.Handler, secret *jwt.Secret, fileSvc *files.FileService, storagePath string) *Server {
 	if router == nil {
 		panic(errors.New("router can't be nil"))
 	}
@@ -27,5 +33,5 @@ func NewServer(router http.Handler, fileSvc *files.FileService, storagePath stri
 		panic(errors.New("storagePath can't be nil"))
 	}
 
-	return &server{fileSvc: fileSvc, storagePath: storagePath, router: router}
+	return &Server{fileSvc: fileSvc, secret: secret, storagePath: storagePath, router: router}
 }

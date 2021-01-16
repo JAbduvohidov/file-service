@@ -1,8 +1,10 @@
 package app
 
-import "net/http"
+import (
+	"net/http"
+)
 
-func (s *server) InitRoutes() {
+func (s *Server) InitRoutes() {
 	mux := s.router.(*http.ServeMux)
 
 	mux.HandleFunc("/files", s.handleMultipartUpload)
